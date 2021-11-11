@@ -1,0 +1,22 @@
+{
+  "name": "comptrain-wod-scraping",
+  "version": "0.0.0",
+  "description": "Scrap comptrain wods",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scrap",
+    "comptrain",
+    "wod"
+  ],
+  "author": "VincentHardouin",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
+  }
+}
