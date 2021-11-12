@@ -8,10 +8,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Wod {
+model Workout {
+  @@map("workouts")
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  content   String?
   title     String
+  content   String?
 }
