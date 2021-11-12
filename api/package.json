@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.2.0"
+    "eslint": "^8.2.0",
+    "prisma": "^3.4.2"
   },
   "dependencies": {
+    "@prisma/client": "^3.4.2",
     "axios": "^0.24.0",
     "node-html-parser": "^5.1.0"
   }
