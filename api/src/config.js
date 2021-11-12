@@ -22,6 +22,4 @@ function buildEnvironment() {
   return env;
 }
 
-const environment = buildEnvironment();
-
-module.exports = environment;
+module.exports = buildEnvironment();
