@@ -2,6 +2,14 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  server: {
+    port: process.env.PORT || 5000,
+  },
+
+  publicRuntimeConfig: {
+    apiUrl: process.env.API_URL || 'http://localhost:3000',
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'webapp',
@@ -30,7 +38,7 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/axios'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
