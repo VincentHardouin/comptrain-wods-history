@@ -1,5 +1,5 @@
 const pino = require('pino');
-const { environment } = require('./config');
+const { environment } = require('../config');
 
 function build() {
   return pino({
