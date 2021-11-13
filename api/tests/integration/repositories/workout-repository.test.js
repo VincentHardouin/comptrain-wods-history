@@ -1,4 +1,4 @@
-const workoutRepository = require('../../../src/repositories/workout-repository');
+const workoutRepository = require('../../../src/infrastructure/repositories/workout-repository');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
