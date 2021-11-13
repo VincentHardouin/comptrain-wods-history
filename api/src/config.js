@@ -8,6 +8,7 @@ function buildEnvironment() {
       enabled: process.env.LOGGER_ENABLED || true,
       level: process.env.LOGGER_LEVEL || 'info',
     },
+    comptrainUrl: process.env.COMPTRAIN_URL || 'https://comptrain.co/wod/',
   };
 
   if (process.env.NODE_ENV === 'production') {
