@@ -27,11 +27,16 @@ jobs:
 
       - run: npm ci
       - run: npm run generate
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          ANALYTICS_ENABLED: ${{ secrets.ANALYTICS_ENABLED }}
+          ANALYTICS_URL: ${{ secrets.ANALYTICS_URL }}
+          ANALYTICS_DOMAIN_URL: ${{ secrets.ANALYTICS_DOMAIN_URL }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./webapp/dist
           cname: wods.vincenthardouin.dev
