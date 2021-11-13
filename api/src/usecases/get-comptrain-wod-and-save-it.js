@@ -22,6 +22,6 @@ module.exports = {
 
     const content = wod.textContent.trim();
 
-    workoutRepository.save({ content, title: title.trim() });
+    await workoutRepository.save({ content, title: title.trim() });
   },
 };
