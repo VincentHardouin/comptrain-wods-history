@@ -1,3 +1,21 @@
+function getAnalytics() {
+  if (!process.env.ANALYTICS_ENABLED || !process.env.ANALYTICS_DOMAIN_URL || !process.env.ANALYTICS_URL) {
+    return;
+  }
+
+  return {
+    script: [
+      {
+        type: 'text/javascript',
+        src: process.env.ANALYTICS_URL,
+        async: true,
+        defer: true,
+        'data-domain': process.env.ANALYTICS_DOMAIN_URL,
+      },
+    ],
+  };
+}
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -23,6 +41,8 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+
+    ...getAnalytics(),
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
