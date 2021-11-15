@@ -13,7 +13,7 @@ function build({ logger }) {
 
   server.get('/workouts', async () => {
     try {
-      return await prisma.workout.findMany();
+      return await prisma.workout.findMany({ orderBy: { id: 'desc' } });
     } finally {
       await prisma.$disconnect();
     }
