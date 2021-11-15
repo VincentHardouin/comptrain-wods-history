@@ -5,4 +5,10 @@ const getComptrainWod = require('./src/usecases/get-comptrain-wod-and-save-it');
 
 server.start();
 
-createCronJob('get-wod-everyday', getComptrainWod.getComptrainWodAndSaveIt(), config.comptrain.getWodSchedule);
+createCronJob(
+  'get-wod-everyday',
+  () => {
+    getComptrainWod.getComptrainWodAndSaveIt();
+  },
+  config.comptrain.getWodSchedule
+);
