@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/", {data:[{workouts:[{id:1,createdAt:"2021-11-13T17:29:08.153Z",updatedAt:"2021-11-13T17:29:08.154Z",title:"“Chad”",content:"For Time:\n1,000 Box Step-Ups (45\u002F35)\nKilos: (20\u002F16)"}]}],fetch:{},mutations:void 0});
