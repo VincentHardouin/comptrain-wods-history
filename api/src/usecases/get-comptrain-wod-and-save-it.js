@@ -17,7 +17,7 @@ module.exports = {
     }
 
     const titleNode = wod.querySelector('em');
-    const title = titleNode.textContent;
+    const title = titleNode?.textContent ?? '';
     wod.childNodes[2].removeChild(titleNode);
 
     const content = wod.textContent.trim();
