@@ -4,6 +4,9 @@
   "description": "Scrap comptrain wods",
   "main": "index.js",
   "scripts": {
+    "ci:all": "npm run ci:webapp && npm run ci:api",
+    "ci:webapp": "cd webapp && npm ci",
+    "ci:api": "cd api && npm ci",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
