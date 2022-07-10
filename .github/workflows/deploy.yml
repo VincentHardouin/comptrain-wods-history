@@ -40,7 +40,7 @@ jobs:
           commit_message: Add new wod ${{ steps.current-time.outputs.formattedTime }}
 
       - name: Generate website
-        run: cd api && npm start &; cd ../webapp && npm run generate;
+        run: cd api && npm start &; cd ../webapp && npm run generate
         env:
           API_URL: http://localhost:3000
           ANALYTICS_ENABLED: ${{ secrets.ANALYTICS_ENABLED }}
