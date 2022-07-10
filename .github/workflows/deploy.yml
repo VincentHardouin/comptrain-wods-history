@@ -10,10 +10,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: webapp
 
     steps:
       - name: Checkout
@@ -25,10 +21,28 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
-      - run: npm ci
-      - run: npm run generate
+      - name: Install dependencies
+        run: npm run ci:all
+
+      - name: Get WOD
+        working-directory: ./api
+        run: npm run get-wod
+
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYY/MM/DD
+
+      - name: Commit WOD
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Add new wod ${{ steps.current-time.outputs.formattedTime }}
+
+      - name: Generate website
+        run: cd api && npm start &; cd ../webapp && npm run generate;
         env:
-          API_URL: ${{ secrets.API_URL }}
+          API_URL: http://localhost:3000
           ANALYTICS_ENABLED: ${{ secrets.ANALYTICS_ENABLED }}
           ANALYTICS_URL: ${{ secrets.ANALYTICS_URL }}
           ANALYTICS_DOMAIN_URL: ${{ secrets.ANALYTICS_DOMAIN_URL }}
