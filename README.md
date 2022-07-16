@@ -1,4 +1,4 @@
-# Comptrain Wod Scraping
+# Comptrain Wod History
 
 [Comptrain](https://comptrain.co) is not exposing the history of their workouts. 
 This problem is solved by this project by creating a backup of all the wods.
@@ -10,7 +10,7 @@ This problem is solved by this project by creating a backup of all the wods.
 #### Stack
 - [Fastify](https://www.fastify.io/) 
 - [Prisma ORM](https://www.prisma.io/)
-- PostgreSQL
+- [SQLite](https://www.sqlite.org/index.html)
 
 #### Endpoint
 
