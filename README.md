@@ -1,7 +1,7 @@
-# Comptrain Wod History
+# Comptrain WODs History
 
 [Comptrain](https://comptrain.co) is not exposing the history of their workouts. 
-This problem is solved by this project by creating a backup of all the wods.
+This problem is solved by this project by creating a backup of all the WODs.
 
 ## Project Composition
 
