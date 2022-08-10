@@ -25,8 +25,9 @@ module.exports = {
 
       await workoutRepository.save({ content, title: title.trim() });
     } catch (e) {
-      if (e.response.status == 404) {
+      if (e.response?.status == 404) {
         console.log("La page n'existe pas");
+        return;
       }
       throw e;
     }
