@@ -21,7 +21,7 @@
     "cron": "^1.8.2",
     "fastify": "^3.23.1",
     "node-html-parser": "^5.1.0",
-    "pino": "^7.2.0",
+    "pino": "^8.0.0",
     "pino-pretty": "^7.2.0"
   }
 }
