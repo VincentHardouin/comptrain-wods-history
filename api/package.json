@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "lint": "eslint --ext \".js\" --ignore-path ../.gitignore .",
     "start": "node index.js",
     "get-wod": "node scripts/get-wod"
   },
