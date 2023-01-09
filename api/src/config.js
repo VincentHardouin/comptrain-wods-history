@@ -9,7 +9,7 @@ function buildEnvironment() {
       level: process.env.LOGGER_LEVEL || 'info',
     },
     comptrain: {
-      url: process.env.COMPTRAIN_URL || 'https://comptrain.co/wod/',
+      url: process.env.COMPTRAIN_URL || 'https://www.instagram.com/api/v1/feed/user/comptrain.co/username/?count=12',
       getWodSchedule: process.env.COMPTRAIN_GET_WOD_SCHEDULE || '0 7 * * *',
     },
   };
