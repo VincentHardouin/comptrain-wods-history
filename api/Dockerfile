@@ -1,9 +1,9 @@
-FROM node:14 as builder
+FROM node:19 as builder
 WORKDIR /app
 COPY . .
 RUN npm install
 
-FROM node:14
+FROM node:19
 WORKDIR /app
 COPY --from=builder /app  .
 ARG PORT=3000
