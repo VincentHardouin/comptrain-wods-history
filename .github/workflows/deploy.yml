@@ -2,6 +2,7 @@ name: cd
 
 on:
   push:
+    workflow_dispatch:
     branches:
       - main
   #schedule:
@@ -23,21 +24,6 @@ jobs:
 
       - name: Install dependencies
         run: npm run ci:all
-
-      - name: Get WOD
-        working-directory: ./api
-        run: npm run get-wod
-
-      - name: Get current time
-        uses: josStorer/get-current-time@v2
-        id: current-time
-        with:
-          format: YYYY/MM/DD
-
-      - name: Commit WOD
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Add new wod ${{ steps.current-time.outputs.formattedTime }}
 
       - name: Generate website
         run: (cd api && npm start &); cd webapp && npm run generate
