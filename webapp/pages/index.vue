@@ -1,20 +1,32 @@
 <template>
-  <div class="index">
-    <h1>Comptrain WODs History</h1>
-    <div class="workouts">
-      <div v-for="workout in workouts" :key="workout.id" class="workout">
-        <h2>{{ workout.title }}</h2>
-        <pre>{{ workout.content }}</pre>
+  <div class="min-h-screen bg-base-200">
+    <!-- HERO -->
+    <section class="py-20 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl font-extrabold text-primary">🏋 CompTrain WOD History</h1>
+        <p class="mt-4 text-xl text-gray-500">Explore and relive the toughest workouts from past sessions.</p>
       </div>
-    </div>
+    </section>
+
+    <!-- WODS GRID -->
+    <section class="px-4 pb-20">
+      <div class="max-w-7xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-for="(wod, index) in workouts"
+          :key="index"
+          class="card shadow-xl hover:shadow-2xl transition duration-300 bg-white border border-base-300"
+        >
+          <div class="card-body">
+            <h2 class="card-title text-primary-content text-xl font-bold">{{ wod.title }}</h2>
+            <p class="whitespace-pre-wrap text-gray-700">{{ wod.content }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
-<script>
-export default {
-  async asyncData({ $axios, $config }) {
-    const workouts = await $axios.$get(`${$config.apiUrl}/workouts`);
-    return { workouts };
-  },
-};
+<script setup lang="ts">
+const config = useRuntimeConfig()
+const { data: workouts } = await useFetch(`${config.public.API_URL}/workouts`)
 </script>
