@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "comptrain-wod-scraping"
+version = "0.1.0"
+description = ""
+authors = ["Vincent Hardouin <vincenthardouin@icloud.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytesseract = "^0.3.13"
+pillow = "^11.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
