@@ -4,7 +4,7 @@
   "description": "Scrap comptrain wods",
   "main": "index.js",
   "engines": {
-    "node": "20.19.0",
+    "node": "20.19.3",
     "npm": "10.8.2"
   },
   "scripts": {
