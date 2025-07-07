@@ -5,7 +5,7 @@
   "main": "index.js",
   "engines": {
     "node": "20.19.3",
-    "npm": "10.8.2"
+    "npm": "10.9.3"
   },
   "scripts": {
     "ci:all": "npm ci && npm run ci:webapp && npm run ci:api",
