@@ -69,8 +69,13 @@ const route = useRoute();
 const router = useRouter();
 
 const searchQuery = ref('');
+const debouncedSearchQuery = useDebounce(searchQuery, 500);
 const selectedType = ref('');
 const selectedMovements = ref<string[]>([]);
+
+// ponytail: dedupe key doubles as the hydration guard — filters restored from the
+// URL are pre-seeded as "already sent", so a shared link reports no search.
+let lastSentFilterKey = '';
 
 onMounted(() => {
   if (route.query.q) searchQuery.value = route.query.q as string;
@@ -78,6 +83,9 @@ onMounted(() => {
   if (route.query.movements) {
     selectedMovements.value = (route.query.movements as string).split(',').filter(Boolean);
   }
+  // Seed from the live value: the debounced ref still holds its setup-time '' here,
+  // but it will settle on searchQuery 500ms from now — that is the key to pre-empt.
+  lastSentFilterKey = JSON.stringify(buildFilterProps(searchQuery.value));
 });
 
 const WOD_TYPE_PATTERNS: { label: string; patterns: string[] }[] = [
@@ -150,6 +158,14 @@ const hasActiveFilters = computed(
   () => searchQuery.value !== '' || selectedType.value !== '' || selectedMovements.value.length > 0,
 );
 
+function buildFilterProps(search: string) {
+  return {
+    search: search || '(none)',
+    type: selectedType.value || '(none)',
+    movements: selectedMovements.value.length ? selectedMovements.value.join(', ') : '(none)',
+  };
+}
+
 const filteredWorkouts = computed<EnrichedWorkout[]>(() =>
   enrichedWorkouts.value.filter((wod) => {
     if (searchQuery.value) {
@@ -170,22 +186,26 @@ const filteredWorkouts = computed<EnrichedWorkout[]>(() =>
   }),
 );
 
+// URL stays instant so a link copied mid-typing carries the full query.
 watch([searchQuery, selectedType, selectedMovements], () => {
   const query: Record<string, string> = {};
   if (searchQuery.value) query.q = searchQuery.value;
   if (selectedType.value) query.type = selectedType.value;
   if (selectedMovements.value.length) query.movements = selectedMovements.value.join(',');
   router.replace({ query });
+});
 
+// Analytics waits for the debounced text: one event per finished word, not per keystroke.
+watch([debouncedSearchQuery, selectedType, selectedMovements], () => {
   if (!hasActiveFilters.value) return;
   if (typeof window === 'undefined' || !window.plausible) return;
-  window.plausible('filter', {
-    props: {
-      search: searchQuery.value || '(none)',
-      type: selectedType.value || '(none)',
-      movements: selectedMovements.value.length ? selectedMovements.value.join(', ') : '(none)',
-    },
-  });
+
+  const props = buildFilterProps(debouncedSearchQuery.value);
+  const key = JSON.stringify(props);
+  if (key === lastSentFilterKey) return;
+  lastSentFilterKey = key;
+
+  window.plausible('filter', { props });
 });
 
 function clearFilters() {
